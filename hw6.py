@@ -17,3 +17,26 @@ class SprintTeam:
             total_available_hours_per_member = (num_sprint_days - member['pto_days']) * member['hours_per_day']
             available_hours_per_person.append(total_available_hours_per_member)
             total_available_hours += total_available_hours_per_member
+
+        # Subtask 2: Sum up the total available effort-hours for the team
+        return available_hours_per_person, total_available_hours
+    
+# Test data
+previous_sprints = [20, 30, 25, 28]
+num_sprint_days = 10
+team_members = [
+    {'pto_days': 1, 'hours_per_day': 8},
+    {'pto_days': 0, 'hours_per_day': 8},
+    {'pto_days': 2, 'hours_per_day': 7}
+]
+
+sprint_team = SprintTeam()
+
+# Feature A - Calculate sprint team's velocity
+velocity = sprint_team.calculate_velocity(previous_sprints)
+print("Average Velocity:", velocity)
+
+# Feature B - Calculate Team Effort-Hour Capacity
+effort_hours_per_person, total_effort_hours_team = sprint_team.calculate_effort_hour_capacity(num_sprint_days, team_members)
+print("Available Effort-Hours per Person:", effort_hours_per_person)
+print("Total Available Effort-Hours for Team:", total_effort_hours_team)
